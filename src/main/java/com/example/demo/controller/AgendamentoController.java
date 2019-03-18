@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -25,7 +27,7 @@ public class AgendamentoController {
 	private AgendamentoRepository repository;
 	
 	@GetMapping("/{id}") 
-	public Agendamento getOne(@PathVariable Integer id){
+	public Agendamento getOne(@PathVariable UUID id){
         return repository.getOne(id);
 	}
 	
@@ -39,8 +41,8 @@ public class AgendamentoController {
         return repository.save(agendamento);
     }
 	
-	@PutMapping()
-    public Agendamento update(Integer id,@RequestBody AgendaRequest agendamento){
+	@PutMapping("/{id}")
+    public Agendamento update(@PathVariable UUID id, @RequestBody AgendaRequest agendamento){
 		Agendamento a = repository.getOne(id);
 
 	      a.setEmail(agendamento.getEmail());
@@ -52,7 +54,7 @@ public class AgendamentoController {
     }
 	
 	@DeleteMapping("/{id}")
-    public void delete(@PathVariable Integer id){
+    public void delete(@PathVariable UUID id){
 		Agendamento a = repository.getOne(id);
         repository.delete(a);
     }

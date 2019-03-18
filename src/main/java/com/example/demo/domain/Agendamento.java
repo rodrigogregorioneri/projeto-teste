@@ -1,41 +1,44 @@
 package com.example.demo.domain;
 
 import java.sql.Date;
+import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 @Entity
-public class Agendamento {
-	
+@Data
+public class Agendamento  {
+
 	@Id
-	@GeneratedValue
-	private int id;
-	
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
+    @Column(name = "id", columnDefinition = "BINARY(16)")
+    private UUID id;
+
 	@Column(name = "nome")
 	private String nome;
-	
+
 	@Column(name = "email")
 	private String email;
-	
+
 	@Column(name = "data_agendamento")
 	private Date dataAgendamento;
-	
+
 	@Column(name = "telefone")
 	private Integer telefone;
-	
 
-	public int getId() {
+	public UUID getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(UUID id) {
 		this.id = id;
 	}
 
@@ -70,8 +73,5 @@ public class Agendamento {
 	public void setTelefone(Integer telefone) {
 		this.telefone = telefone;
 	}
-	
-	
-	
 
 }
