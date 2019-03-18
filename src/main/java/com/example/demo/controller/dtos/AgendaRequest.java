@@ -2,10 +2,6 @@ package com.example.demo.controller.dtos;
 
 import java.sql.Date;
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-
 public class AgendaRequest {
 
 	private String nome;
