@@ -7,13 +7,17 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.GenericGenerator;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Data
+@NoArgsConstructor
 public class Agendamento  {
 
 	@Id
@@ -23,16 +27,27 @@ public class Agendamento  {
     private UUID id;
 
 	@Column(name = "nome")
+	@NotNull
 	private String nome;
 
 	@Column(name = "email")
+	@Email
+	@NotNull
 	private String email;
 
 	@Column(name = "data_agendamento")
 	private Date dataAgendamento;
 
 	@Column(name = "telefone")
+	@NotNull
 	private Integer telefone;
+	
+	public Agendamento(String nome,String email,Date dataAgendamento,Integer telefone) {
+        this.nome = nome;
+        this.email = email;
+        this.dataAgendamento = dataAgendamento;
+        this.telefone = telefone;
+    }
 
 	public UUID getId() {
 		return id;

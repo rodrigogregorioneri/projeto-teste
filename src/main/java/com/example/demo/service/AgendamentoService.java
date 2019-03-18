@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.example.demo.controller.dtos.AgendaRequest;
 import com.example.demo.domain.Agendamento;
 import com.example.demo.repository.AgendamentoRepository;
+
 
 @Service
 public class AgendamentoService {
@@ -40,9 +42,12 @@ public class AgendamentoService {
 		return repository.save(a);
 	}
 
-	public void delete(UUID id) {
-		Agendamento a = repository.getOne(id);
-		repository.delete(a);
+	public void delete(Agendamento agendamento) {
+		repository.delete(agendamento);
+	}
+
+	public Optional<Agendamento> findById(UUID id) {
+		return repository.findById(id);
 	}
 
 }
